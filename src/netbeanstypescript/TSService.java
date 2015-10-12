@@ -56,6 +56,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
+import org.netbeans.api.extexecution.ExternalProcessBuilder;
 import org.netbeans.lib.editor.util.StringEscapeUtils;
 import org.netbeans.modules.csl.api.*;
 import org.netbeans.modules.csl.api.DeclarationFinder.DeclarationLocation;
@@ -71,6 +72,7 @@ import org.netbeans.modules.parsing.spi.indexing.Indexable;
 import org.netbeans.modules.refactoring.spi.RefactoringElementImplementation;
 import org.netbeans.modules.refactoring.spi.SimpleRefactoringElementImplementation;
 import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
 import org.openide.filesystems.URLMapper;
 import org.openide.modules.InstalledFileLocator;
 import org.openide.text.CloneableEditorSupport;
@@ -119,11 +121,18 @@ public class TSService {
         NodeJSProcess() throws Exception {
             System.out.println("TSService: starting nodejs");
             File file = InstalledFileLocator.getDefault().locate("nbts-services.js", "netbeanstypescript", false);
-            for (String command: new String[] { "nodejs", "node" }) {
-                try {
-                    Process process = new ProcessBuilder()
-                        .command(command, "--harmony", file.toString())
-                        .start();
+            String nodejs = "node";
+            if (System.getProperty("os.name").toLowerCase().contains("mac os")) {
+                nodejs = "/usr/local/bin/node";
+            }
+            for (String command: new String[] { nodejs, "nodejs" }) {
+            try {
+                    ExternalProcessBuilder builder = new ExternalProcessBuilder(command)
+                        .redirectErrorStream(true)
+                        .addArgument("--harmony")
+                        .addArgument(file.toString());
+
+                    Process process = builder.call();
                     stdin = process.getOutputStream();
                     stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     process.getErrorStream().close();
