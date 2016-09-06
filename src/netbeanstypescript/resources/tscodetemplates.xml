@@ -373,4 +373,11 @@ function ${name}(${parameters}) {
     <codetemplate abbreviation="ref">
         <code><![CDATA[/// <reference path="${path default="file.d.ts"}" />]]></code>
     </codetemplate>
+    <codetemplate abbreviation="cls">
+      <code><![CDATA[class ${Type} {
+    constructor(${parameters}) {
+        ${cursor}
+	}
+}]]></code>
+    </codetemplate>
 </codetemplates>

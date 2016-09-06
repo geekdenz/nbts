@@ -164,9 +164,18 @@
     </folder>
 
     <folder name="Templates">
-        <folder name="Other">
-            <file name="typescript.ts" url="template">
-                <attr name="displayName" bundlevalue="netbeanstypescript.resources.Bundle#Templates/Other/typescript.ts"/>
+        <folder name="TypeScript">
+            <file name="emptyfile.ts" url="template">
+                <attr name="displayName" bundlevalue="netbeanstypescript.resources.Bundle#Templates/TypeScript/typescript.ts"/>
+                <attr name="position" intvalue="460"/>
+                <attr name="template" boolvalue="true"/>
+                <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
+                <attr name="templateCategory" stringvalue="simple-files"/>
+                <attr name="templateWizardURL" urlvalue="nbresloc:/netbeanstypescript/resources/typescript.html"/>
+                <!--<attr name="requireProject" boolvalue="false"/>-->
+            </file>
+            <file name="MyClass.ts" url="classtemplate">
+                <attr name="displayName" bundlevalue="netbeanstypescript.resources.Bundle#Templates/TypeScript/typescript.ts"/>
                 <attr name="position" intvalue="460"/>
                 <attr name="template" boolvalue="true"/>
                 <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
