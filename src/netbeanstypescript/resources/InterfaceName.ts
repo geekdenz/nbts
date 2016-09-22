@@ -2,6 +2,6 @@
  *
  * @author ${user}
  */
-class ${name} {
-
+interface ${name} {
+	
 }

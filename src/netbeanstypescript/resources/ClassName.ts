@@ -1,0 +1,7 @@
+/**
+ *
+ * @author ${user}
+ */
+class ${name} {
+	
+}
